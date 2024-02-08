@@ -1,0 +1,63 @@
+﻿@model EmployeeRepositoryDesignPattern.Models.EmployeeDetails
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 style="color:cornflowerblue">Add New Employee</h1>
+
+<div class="row">
+    <div class="col-sm-6">
+        <form method="post" asp-action="Create" asp-controller="Employee">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="EmployeeId" />
+            <div class="form-control">
+                <label class="control-label">Name</label>
+                <input type="text" asp-for="EmployeeName" class="form-control" />
+                <span asp-validation-for="EmployeeName" class="text-danger"></span>
+            </div>
+            <div class="form-control">
+                <label class="control-label">Description</label>
+                <input type="text" asp-for="EmployeeDescription" class="form-control" />
+                <span asp-validation-for="EmployeeDescription" class="text-danger"></span>
+            </div>
+            <div class="form-control">
+                <label class="control-label">Phone</label>
+                <input type="number" asp-for="EmployeePhone" class="form-control" />
+                <span asp-validation-for="EmployeePhone" class="text-danger"></span>
+            </div>
+            <div class="form-control">
+                <label class="control-label">Is Active</label>
+                <div class="form-check">
+                    <div>
+                        <input class="checkoption" type="checkbox" onclick="checkedOnClick(this);" asp-for="IsActive" checked value="true" />
+                        <label for="Yes">Yes</label>
+                    </div>
+
+                    <div>
+                        <input class="form-check" type="checkbox" onclick="checkedOnClick(this);" asp-for="IsActive" value="false" />
+                        <label for="No">No</label>
+                    </div>
+                </div>
+                <span asp-validation-for="IsActive" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input class="btn btn-primary" type="submit" value="Add" />
+                <a class="btn btn-primary" asp-action="Index">Back to list</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Script -->
+<script type="text/javascript">
+    function checkedOnClick(el) {
+
+        // Select all checkboxes by class
+        var checkboxesList = document.getElementsByClassName("checkoption");
+        for (var i = 0; i < checkboxesList.length; i++) {
+            checkboxesList.item(i).checked = false; // Uncheck all checkboxes
+        }
+
+        el.checked = true; // Checked clicked checkbox
+    }
+</script>

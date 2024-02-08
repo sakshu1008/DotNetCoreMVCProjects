@@ -1,0 +1,59 @@
+﻿@model EmployeeRepositoryDesignPattern.Models.EmployeeDetails
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1 style="position:center; color:cornflowerblue">Delete Employee</h1>
+
+<h3 style="color:red">Would you like to Continue?</h3>
+<div class="container">
+    <hr/>
+    <div class="row">
+        <dl class="row">
+            <dt class="col-sm-3">
+                <label>Id:</label>
+            </dt>
+            <dd class="col-sm-9">
+                @Model.EmployeeId
+            </dd>
+            <dt class="col-sm-3">
+                <label>Name:</label>
+            </dt>
+            <dd class="col-sm-9">
+                @Model.EmployeeName
+            </dd>
+            <dt class="col-sm-3">
+                <label>Description</label>
+            </dt>
+            <dd class="col-sm-9">
+                @Model.EmployeeDescription
+            </dd>
+            <dt class="col-sm-3">
+                <label>Phone:</label>
+            </dt>
+            <dd class="col-sm-9">
+                @Model.EmployeePhone
+            </dd>
+            <dt class="col-sm-3">
+                <label>Is Active:</label>
+            </dt>
+            @if (Model.IsActive == true)
+            {
+                <dd class="col-sm-9">
+                    Yes
+                </dd>
+            }
+            else
+            {
+                <dd class="col-sm-9">
+                    No
+                </dd>
+            }
+        </dl>
+        <form  method="post"  asp-action="DeleteConfirmed" asp-controller="Employee">
+            <input type="hidden" asp-for="EmployeeId" />
+            <input class="btn btn-primary" type="submit" asp-route-id="@Model.EmployeeId" value="Yes" />
+            <a class="btn btn-danger" asp-action="Index">No</a>
+        </form>
+    </div>
+</div>
